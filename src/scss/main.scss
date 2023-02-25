@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+@import url('./PokemonCard.scss');
+@import url('./PokemonList.scss');
+
+[class*="__container"] {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1200px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Karla", serif;
+}
