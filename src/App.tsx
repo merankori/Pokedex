@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import PokemonList from './components/PokemonList/PokemonList';
+import PokemonPage from './components/pages/PokemonPage/PokemonPage';
 const App: FC = () => {
 
   return (
     <div className='App'>
       <div className="page__container">
-        <PokemonList/>
+        <PokemonPage/>
       </div>
     </div>
   );

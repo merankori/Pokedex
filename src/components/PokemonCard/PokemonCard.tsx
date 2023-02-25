@@ -1,14 +1,11 @@
-import {FC, useState, useEffect} from 'react';
+import {FC} from 'react';
 import { IPokemon } from '../../types/pokemon';
-import axios from "axios";
 
 interface PokemonCardProps {
   pokemon: IPokemon
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({pokemon}) => {
-  const [loading, setLoading] = useState(false);
-
   return (
     <div className='pokemon-card'>
         <div className="pokemon-card__content">
