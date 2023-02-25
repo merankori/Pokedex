@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { FC, useEffect, useState } from 'react';
-import { IPokedata } from '../../types/pokemon';
 import PokemonCard from '../PokemonCard/PokemonCard';
+import { IPokedata, IPokemon } from '../../types/pokemon';
+import { pokemonStore } from '../../store/PokemonStore';
+import { observer } from 'mobx-react-lite';
+import { FETCH_POKEMONS } from '../../utils/consts';
 
-const PokemonList: FC = () => {
-  const [pokedataItems, setPokedataItems] = useState<IPokedata[]>([]);
+const PokemonList: FC = observer(() => {
   const [loading, setLoading] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState(FETCH_POKEMONS);
 
   useEffect(() => {
     fetchPokedata();
@@ -14,8 +17,8 @@ const PokemonList: FC = () => {
   const fetchPokedata = async () => {
     try {
       setLoading(true);
-      const {data} = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=9')
-      setPokedataItems(data.results);
+      const {data} = await axios.get(currentUrl);
+      fetchPokemon(data.results);
     } catch(err) {
       alert(err);
     } finally {
@@ -23,7 +26,12 @@ const PokemonList: FC = () => {
     }
   }
 
-  console.log(pokedataItems)
+  const fetchPokemon = (data: IPokedata[]) => {
+    data.map(async item => {
+      const {data} = await axios.get<IPokemon>(item.url);
+      pokemonStore.addPokemonData(data);
+    })
+  }
 
   if (loading) {
     return <p>Загрузка...</p>
@@ -31,11 +39,11 @@ const PokemonList: FC = () => {
 
   return (
     <div className='pokemon-list'>
-        {pokedataItems.map(item => (
-          <PokemonCard pokedata={item}/>
+        {pokemonStore.pokemons.map(pokemon => (
+          <PokemonCard key={pokemon.id} pokemon={pokemon}/>
         ))}
     </div>
   );
-};
+});
 
 export default PokemonList;

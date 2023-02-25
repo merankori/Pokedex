@@ -1,37 +1,16 @@
 import {FC, useState, useEffect} from 'react';
-import { IPokedata, IPokemon } from '../../types/pokemon';
+import { IPokemon } from '../../types/pokemon';
 import axios from "axios";
 
 interface PokemonCardProps {
-  pokedata: IPokedata
+  pokemon: IPokemon
 }
 
-const PokemonCard: FC<PokemonCardProps> = ({pokedata}) => {
+const PokemonCard: FC<PokemonCardProps> = ({pokemon}) => {
   const [loading, setLoading] = useState(false);
-  const [pokemon, setPokemon] = useState<IPokemon | null>(null);
 
-  useEffect(() => {
-    fetchPokemon();
-  }, [])
-
-  const fetchPokemon = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get<IPokemon>(pokedata.url)
-      setPokemon(res.data);
-    } catch(err) {
-      alert(err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const renderInfo = () => {
-    if (loading) {
-      return <p>Загрузка...</p>
-    }
-    return (
-      <>
+  return (
+    <div className='pokemon-card'>
         <div className="pokemon-card__content">
           <h2 className="pokemon-card__name">{pokemon?.name}</h2>
           <div className="pokemon-card__stats">
@@ -46,20 +25,18 @@ const PokemonCard: FC<PokemonCardProps> = ({pokedata}) => {
           </div>
           <div className="pokemon-card__types">
             {pokemon?.types.map(item => (
-              <div className="pokemon-card__type">{item.type.name}</div>
+              <div
+                className="pokemon-card__type"
+                key={item.slot}
+              >
+                {item.type.name}
+              </div>
             ))}
           </div>
         </div>
         <div className="pokemon-card__img">
           <img className="pokemon-card__img-content" src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
         </div>
-      </>
-    )
-  }
-
-  return (
-    <div className='pokemon-card'>
-      {renderInfo()}
     </div>
   );
 };
