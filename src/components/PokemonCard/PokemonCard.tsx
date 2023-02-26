@@ -1,5 +1,7 @@
 import {FC} from 'react';
+import {Link} from "react-router-dom";
 import { IPokemon } from '../../types/pokemon';
+import './PokemonCard.scss';
 
 interface PokemonCardProps {
   pokemon: IPokemon
@@ -7,7 +9,7 @@ interface PokemonCardProps {
 
 const PokemonCard: FC<PokemonCardProps> = ({pokemon}) => {
   return (
-    <div className='pokemon-card'>
+    <Link to={'pokemon/' + pokemon.id} className='pokemon-card'>
         <div className="pokemon-card__content">
           <h2 className="pokemon-card__name">{pokemon?.name}</h2>
           <div className="pokemon-card__stats">
@@ -34,7 +36,7 @@ const PokemonCard: FC<PokemonCardProps> = ({pokemon}) => {
         <div className="pokemon-card__img">
           <img className="pokemon-card__img-content" src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
         </div>
-    </div>
+    </Link>
   );
 };
 

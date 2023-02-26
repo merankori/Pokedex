@@ -1,0 +1,22 @@
+.header {
+  height: 90px;
+  background-color: rgb(38, 150, 255);
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+  &__logo {
+
+  }
+  &__nav {
+    display: flex;
+    gap: 20px;
+  }
+  &__link {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+  }
+}

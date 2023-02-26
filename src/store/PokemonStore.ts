@@ -8,8 +8,8 @@ class PokemonStore {
 
   _pokemons: IPokemon[] = []
 
-  addPokemonData(data: IPokemon) {
-    this._pokemons.push(data);
+  addPokemons(pokemons: IPokemon[]) {
+    this._pokemons = pokemons;
   }
   
   get pokemons(): IPokemon[] {
