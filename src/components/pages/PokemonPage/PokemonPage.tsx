@@ -43,6 +43,7 @@ const PokemonPage: FC = () => {
                 ))}
               </div>
               <img src={pokemonPicture} alt="" />
+              <h2 className='pokemon-info__name'>{pokemon?.name}</h2>
             </div>
             <div className="pokemon-info__content">
               <h2>Stats</h2>
