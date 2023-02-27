@@ -1,5 +1,5 @@
 .header {
-  height: 90px;
+  height: var(--header-height);
   background-color: rgb(38, 150, 255);
   &__container {
     display: flex;

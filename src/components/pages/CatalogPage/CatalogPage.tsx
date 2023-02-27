@@ -1,5 +1,6 @@
 import {FC} from 'react';
 import PokemonList from '../../PokemonList/PokemonList';
+import "./CatalogPage.scss";
 
 const CatalogPage: FC = () => {
   return (

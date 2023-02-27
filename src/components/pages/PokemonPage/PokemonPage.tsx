@@ -2,7 +2,7 @@ import axios from 'axios';
 import {FC, useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import { IPokemon } from '../../../types/pokemon';
-import { FETCH_POKEMON } from '../../../utils/consts';
+import { FETCH_POKEMON, typeColors } from '../../../utils/consts';
 
 import "./PokemonPage.scss";
 
@@ -32,14 +32,24 @@ const PokemonPage: FC = () => {
     return <div>Загрузка...</div>
   }
 
+  const typeColor = pokemon ? typeColors?.[pokemon?.types[0].type.name] : '#F6F7F9';
+
   return (
     <div className='pokemon-page page'>
         <div className="page__container">
           <div className="pokemon-info pokemon-info-top">
-            <div className="pokemon-info__image">
+            <div
+              className="pokemon-info__image"
+              style={{backgroundColor: typeColor}}
+            >
               <div className="pokemon-info__types">
                 {pokemon?.types.map(item => (
-                  <div className="pokemon-info__type">{item.type.name}</div>
+                  <div
+                    className="pokemon-info__type"
+                    style={{backgroundColor: typeColors?.[item.type.name] || '#F6F7F9'}}
+                  >
+                    {item.type.name}
+                  </div>
                 ))}
               </div>
               <img src={pokemonPicture} alt="" />

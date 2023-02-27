@@ -1,6 +1,7 @@
 import {FC} from 'react';
 import {Link} from "react-router-dom";
 import { IPokemon } from '../../types/pokemon';
+import { typeColors } from '../../utils/consts';
 import './PokemonCard.scss';
 
 interface PokemonCardProps {
@@ -26,6 +27,7 @@ const PokemonCard: FC<PokemonCardProps> = ({pokemon}) => {
           {pokemon?.types.map(item => (
             <div
               className="pokemon-card__type"
+              style={{backgroundColor: typeColors?.[item.type.name] || '#F6F7F9'}}
               key={item.slot}
             >
               {item.type.name}
@@ -33,7 +35,10 @@ const PokemonCard: FC<PokemonCardProps> = ({pokemon}) => {
           ))}
         </div>
       </div>
-      <div className="pokemon-card__img">
+      <div
+        className="pokemon-card__img"
+        style={{backgroundColor: typeColors?.[pokemon.types[0].type.name] || '#F6F7F9'}}
+      >
         <img className="pokemon-card__img-content" src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
       </div>
       <p className='pokemon-card__id'>#{pokemon.id}</p>
