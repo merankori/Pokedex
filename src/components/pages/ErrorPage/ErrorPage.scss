@@ -1,5 +1,5 @@
 .error-page {
-  height: 100%;
+  height: calc(100% - var(--header-height));
   padding-top: 60px;
   background-color: #D93E30;
   &__container {

@@ -23,10 +23,6 @@ body {
   background: linear-gradient(180deg, #FFFFFF 30.32%, #F5F5F5 100%);
 }
 
-.page {
-  height: calc(100% - var(--header-height));
-}
-
 .App {
   height: 100vh;
 }

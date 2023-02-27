@@ -35,7 +35,7 @@ const PokemonPage: FC = () => {
   const typeColor = pokemon ? typeColors?.[pokemon?.types[0].type.name] : '#F6F7F9';
 
   return (
-    <div className='pokemon-page page'>
+    <div className='pokemon-page'>
         <div className="page__container">
           <div className="pokemon-info pokemon-info-top">
             <div
