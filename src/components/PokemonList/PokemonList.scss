@@ -1,6 +1,28 @@
 .pokemon-list {
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  gap: 10px;
+  &__box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    gap: 10px;
+  }
+  &__buttons {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__btn {
+    cursor: pointer;
+    padding: 15px 30px;
+    color: #fff;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    &:disabled {
+
+    }
+  }
 }

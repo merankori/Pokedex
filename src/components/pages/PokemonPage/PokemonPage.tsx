@@ -2,7 +2,7 @@ import axios from 'axios';
 import {FC, useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import { IPokemon } from '../../../types/pokemon';
-import { FETCH_POKEMON, typeColors } from '../../../utils/consts';
+import { FETCH_POKEMONS, typeColors } from '../../../utils/consts';
 
 import "./PokemonPage.scss";
 
@@ -19,7 +19,7 @@ const PokemonPage: FC = () => {
   const fetchPokemon = async () => {
     try {
       setLoading(true);
-      const {data} = await axios.get<IPokemon>(`${FETCH_POKEMON}/${id}`);
+      const {data} = await axios.get<IPokemon>(`${FETCH_POKEMONS}/${id}`);
       setPokemon(data);
     } catch(err) {
       alert(err);
@@ -45,6 +45,7 @@ const PokemonPage: FC = () => {
               <div className="pokemon-info__types">
                 {pokemon?.types.map(item => (
                   <div
+                    key={item.slot}
                     className="pokemon-info__type"
                     style={{backgroundColor: typeColors?.[item.type.name] || '#F6F7F9'}}
                   >
@@ -59,7 +60,10 @@ const PokemonPage: FC = () => {
               <h2>Stats</h2>
               <div className="pokemon-info__box">
                 {pokemon?.stats.map(stat => (
-                  <div className="pokemon-info__item">
+                  <div
+                    key={stat.stat.name}
+                    className="pokemon-info__item"
+                  >
                     <p className='pokemon-info__item-value'>{stat.base_stat}</p>
                     <p className='pokemon-info__item-name'>{stat.stat.name}</p>
                   </div>

@@ -16,6 +16,7 @@ const Header: FC = () => {
         <nav className="header__nav">
           {headerLinks.map(item => (
             <Link
+              key={item.name}
               to={item.path}
               className="header__link"
             >{item.name}</Link>
