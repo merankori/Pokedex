@@ -6,7 +6,7 @@ import img from "../../../img/error-pic.png";
 
 const ErrorPage: FC = () => {
   return (
-    <div className='error-page'>
+    <div className='error-page page'>
         <div className="error-page__container">
           <div className="error-page__content">
             <div className="error-page__bg">

@@ -5,7 +5,7 @@ import "./CatalogPage.scss";
 
 const CatalogPage: FC = () => {
   return (
-    <div className='catalog-page'>
+    <div className='catalog-page page'>
       <div className="page__container">
         <PokemonSearch/>
         <PokemonList/>

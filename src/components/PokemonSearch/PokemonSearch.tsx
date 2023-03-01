@@ -31,7 +31,7 @@ const Search: FC = () => {
         type="text"
         onChange={e => setQuery(e.target.value)}
         className="pokemon-search__input"
-        placeholder='Search by name'
+        placeholder='Search by exact name'
       />
       <button className="pokemon-search__button">
         <div
