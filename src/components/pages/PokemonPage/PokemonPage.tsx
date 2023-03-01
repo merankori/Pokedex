@@ -3,6 +3,7 @@ import {FC, useState, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import { IPokemon } from '../../../types/pokemon';
 import { FETCH_POKEMONS, typeColors } from '../../../utils/consts';
+import PokemonSearch from "../../PokemonSearch/PokemonSearch";
 
 import "./PokemonPage.scss";
 
@@ -37,6 +38,7 @@ const PokemonPage: FC = () => {
   return (
     <div className='pokemon-page'>
         <div className="page__container">
+          <PokemonSearch/>
           <div className="pokemon-info pokemon-info-top">
             <div
               className="pokemon-info__image"
