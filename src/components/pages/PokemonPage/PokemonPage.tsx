@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {FC, useState, useEffect} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { IPokemon } from '../../../types/pokemon';
 import { FETCH_POKEMONS, typeColors } from '../../../utils/consts';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
@@ -13,6 +13,7 @@ const PokemonPage: FC = () => {
   const [loading, setLoading] = useState(false);
   const pokemonPicture = pokemon?.sprites.other['official-artwork'].front_default;
   const {id} = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchPokemon();
@@ -23,7 +24,11 @@ const PokemonPage: FC = () => {
       setLoading(true);
       const {data} = await axios.get<IPokemon>(`${FETCH_POKEMONS}/${id}`);
       setPokemon(data);
-    } catch(err) {
+    } catch(err: any) {
+      if (err.response.status === 404) {
+        navigate('/404');
+        return
+      }
       alert(err);
     } finally {
       setLoading(false);
