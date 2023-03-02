@@ -18,6 +18,10 @@ export interface IPokemon {
   height: number
   weight: number
   stats: IStatItem[]
+  species: {
+    name: string,
+    url: string
+  }
 }
 
 interface IStatItem {

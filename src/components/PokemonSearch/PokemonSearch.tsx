@@ -16,7 +16,7 @@ const Search: FC = () => {
     if (!query.length) return;
     try {
       const {data} = await axios.get<IPokemon>(`${FETCH_POKEMONS}/${query.toLowerCase()}`);
-      navigate(`pokemon/${data.id}`);
+      navigate(`/pokemon/${data.id}`);
     } catch(err) {
       setErrorMessage(true);
       setTimeout(() => setErrorMessage(false), 3000);
