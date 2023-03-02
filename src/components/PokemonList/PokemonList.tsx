@@ -7,6 +7,7 @@ import { observer } from 'mobx-react-lite';
 
 import './PokemonList.scss';
 import { FETCH_POKEMONS } from '../../utils/consts';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 interface FetchPokemonsResult {
   count: number
@@ -62,7 +63,11 @@ const PokemonList: FC = observer(() => {
   }
 
   if (loading) {
-    return <p>Загрузка...</p>
+    return (
+      <div className='pokemon-list'>
+        <LoadingScreen/>
+      </div>
+    )
   }
 
   return (
@@ -87,7 +92,7 @@ const PokemonList: FC = observer(() => {
         >
           Next
         </button>
-        </div>
+      </div>
     </div>
   );
 });
