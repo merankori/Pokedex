@@ -21,7 +21,7 @@ export const typeColors: {
   fire: "#D93E30",
   water: "#35BAFF",
   grass: "#64D368",
-  electric: "#F2B80",
+  electric: "#F5DB13",
   psychic: "#a29bfe",
   ice: "#74b9ff",
   dragon: "#e4cf89",
