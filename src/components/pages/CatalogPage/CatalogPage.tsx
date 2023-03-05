@@ -8,6 +8,7 @@ const CatalogPage: FC = () => {
     <div className='catalog-page page'>
       <div className="page__container">
         <PokemonSearch/>
+        <h1 className="catalog-page__title">Catalog</h1>
         <PokemonList/>
       </div>
     </div>

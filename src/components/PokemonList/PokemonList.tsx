@@ -20,6 +20,7 @@ const PokemonList: FC = observer(() => {
   const limit = 9;
   const [page, setPage] = useState<number>(1);
   const offset = limit * page - limit;
+  const [pokemonsCount, setPokemonsCount] = useState<number>(0);
   const [currentUrl, setCurrentUrl] = useState<string>(`${FETCH_POKEMONS}?limit=${limit}&offset=${offset}`);
   const [prevUrl, setPrevUrl] = useState<string | null>(null);
   const [nextUrl, setNextUrl] = useState<string | null>(null);
@@ -33,6 +34,7 @@ const PokemonList: FC = observer(() => {
     try {
       setLoading(true);
       const {data} = await axios.get<FetchPokemonsResult>(currentUrl);
+      setPokemonsCount(data.count);
       setPrevUrl(data.previous);
       setNextUrl(data.next);
       const pokemons = await fetchPokemons(data.results);
@@ -72,6 +74,11 @@ const PokemonList: FC = observer(() => {
 
   return (
     <div className="pokemon-list">
+      <p
+        className='pokemon-list__text'
+      >
+        There are <span>{pokemonsCount}</span> Pokemon for you!
+      </p>
       <div className='pokemon-list__box'>
           {pokemonStore.pokemons.map(pokemon => (
             <PokemonCard key={pokemon.id} pokemon={pokemon}/>

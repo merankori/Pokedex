@@ -1,5 +1,8 @@
 .pokemon-page {
   padding: 20px 0;
+  &__title {
+    margin-top: 25px;
+  }
 }
 
 .pokemon-info {
@@ -44,7 +47,7 @@
     border: 2px solid #F6F7F9;
     box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
   }
-  &__teammate-btn {
+  &__pokeball-icon {
     cursor: pointer;
     width: 50px;
     height: 50px;
@@ -105,9 +108,22 @@
 }
 
 .pokemon-evolution {
-  margin-top: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__title {
+    font-size: 30px;
+    text-align: center;
+  }
+  &__text {
+    margin-top: 30px;
+    font-size: 24px;
+  }
   &__box {
     --gap: 20px;
+    width: 100%;
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap);
@@ -119,6 +135,10 @@
     height: 300px;
     padding: 0 20px;
     padding-top: 20px;
+    transition: transform .5s;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
   &__content {
     width: 100%;

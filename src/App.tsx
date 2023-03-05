@@ -21,7 +21,7 @@ const App: FC = () => {
       <BrowserRouter>
         <Header/>
         <Routes>
-          <Route path='/' element={<CatalogPage/>}/>
+          <Route path='/catalog' element={<CatalogPage/>}/>
           <Route path='/pokemon/:id' element={<PokemonPage/>}/>
           <Route path='/team' element={<TeamPage/>}/>
           <Route path='/404' element={<ErrorPage/>}/>

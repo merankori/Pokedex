@@ -5,6 +5,10 @@ export const headerLinks = [
     path: '/'
   },
   {
+    name: 'Catalog',
+    path: '/catalog'
+  },
+  {
     name: 'My team',
     path: '/team'
   }

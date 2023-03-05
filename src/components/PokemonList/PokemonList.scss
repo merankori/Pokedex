@@ -1,7 +1,16 @@
 .pokemon-list {
-  margin-top: 20px;
   width: 100%;
+  &__text {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    span {
+      color: var(--accent-color);
+    }
+  }
   &__box {
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

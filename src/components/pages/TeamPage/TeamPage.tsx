@@ -1,20 +1,23 @@
 import axios from 'axios';
 import {FC, useState, useEffect} from 'react';
+import { pokemonStore } from '../../../store/PokemonStore';
 import { IPokemon } from '../../../types/pokemon';
 import { FETCH_POKEMONS } from '../../../utils/consts';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
+import PokemonCard from '../../PokemonCard/PokemonCard';
+import Search from '../../PokemonSearch/PokemonSearch';
+
+import "./TeamPage.scss";
 
 const TeamPage: FC = () => {
   const [pokemons, setPokemons] = useState<IPokemon[] | null>(null);
+  const [pokemonsCount, setPokemonsCount] = useState<number>(0);
   const [loading, setLoading] = useState(false);
-  const teamData: string | null = localStorage.getItem('team');
-  const teamIds: number[] | null = teamData ? JSON.parse(teamData) : null;
+  const teamIds = pokemonStore.teamIds;
 
   useEffect(() => {
-    if (teamIds && teamIds.length) {
-      fetchPokemons(teamIds);
-    }
-  }, []);
+    fetchPokemons(teamIds);
+  }, [teamIds]);
 
   const fetchPokemons = async (ids: number[]) => {
     try {
@@ -24,6 +27,7 @@ const TeamPage: FC = () => {
         const {data: pokemon} = await axios.get<IPokemon>(`${FETCH_POKEMONS}/${id}`);
         pokemons.push(pokemon);
       }
+      setPokemonsCount(pokemons.length)
       setPokemons(pokemons);
     } catch(err) {
       alert(err);
@@ -41,7 +45,7 @@ const TeamPage: FC = () => {
       </div>
     );
   }
-  if (!teamIds) {
+  if (!teamIds.length) {
     return (
       <div className='team-page page'>
         <div className="team-page__container">
@@ -54,7 +58,19 @@ const TeamPage: FC = () => {
   return (
     <div className='team-page page'>
       <div className="team-page__container">
-
+        <Search/>
+        <h1 className="team-page__title">Your team</h1>
+        <p className="team-page__text">
+          There are <span>{pokemonsCount}</span> Pokemon in your team.
+        </p>
+        <div className="team-page__team-list">
+          {pokemons?.map(pokemon => (
+            <PokemonCard
+              key={pokemon.id}
+              pokemon={pokemon}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

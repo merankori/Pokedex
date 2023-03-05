@@ -1,6 +1,5 @@
 .pokemon-card {
   --gap: 10px;
-  position: relative;
   cursor: pointer;
   transition: transform .5s;
   overflow: hidden;
@@ -21,13 +20,24 @@
   }
   .pokemon-card__id {
     position: absolute;
-    top: 3%;
-    right: 3%;
+    top: 5%;
+    right: 5%;
     color: #fff;
     font-size: 16px;
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
+  }
+  &__teammate-icon {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 40px;
+    height: 40px;
+    display: none;
+    &_active {
+      display: block;
+    }
   }
   .pokemon-card__content {
     padding: 15px;
@@ -38,6 +48,7 @@
     justify-content: space-between;
   }
   .pokemon-card__img {
+    position: relative;
     width: 55%;
     height: 100%;
   }

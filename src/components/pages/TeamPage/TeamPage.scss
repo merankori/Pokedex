@@ -1,0 +1,22 @@
+.team-page {
+  padding: 20px 0;
+  &__title {
+    margin-top: 25px;
+  }
+  &__text {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    span {
+      color: var(--accent-color);
+    }
+  }
+  &__team-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+  }
+}

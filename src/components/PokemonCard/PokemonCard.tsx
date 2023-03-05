@@ -1,5 +1,7 @@
-import {FC} from 'react';
+import {FC, useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
+import PokeballIcon from '../../img/components/PokeballIcon/PokeballIcon';
+import { pokemonStore } from '../../store/PokemonStore';
 import { IPokemon } from '../../types/pokemon';
 import { typeColors } from '../../utils/consts';
 import './PokemonCard.scss';
@@ -9,8 +11,18 @@ interface PokemonCardProps {
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({pokemon}) => {
+  const [isTeammate, setIsTeammate] = useState<boolean>();
+
+  useEffect(() => {
+    checkTeammate(pokemon.id);
+  }, [])
+
+  const checkTeammate = (id: number) => {
+    pokemonStore.teamIds.includes(id) ? setIsTeammate(true) : setIsTeammate(false);
+  }
+
   return (
-    <Link to={'pokemon/' + pokemon.id} className='pokemon-card'>
+    <Link to={`/pokemon/${pokemon.id}`} className='pokemon-card'>
       <div className="pokemon-card__content">
         <h2 className="pokemon-card__name">{pokemon?.name}</h2>
         <div className="pokemon-card__stats">
@@ -39,9 +51,12 @@ const PokemonCard: FC<PokemonCardProps> = ({pokemon}) => {
         className="pokemon-card__img"
         style={{backgroundColor: typeColors?.[pokemon.types[0].type.name] || '#F6F7F9'}}
       >
+        <PokeballIcon
+          classes={`pokemon-card__teammate-icon ${isTeammate ? 'pokemon-card__teammate-icon_active' : ''}`}
+        />
+        <p className='pokemon-card__id'>#{pokemon.id}</p>
         <img className="pokemon-card__img-content" src={pokemon?.sprites.other['official-artwork'].front_default} alt="" />
       </div>
-      <p className='pokemon-card__id'>#{pokemon.id}</p>
     </Link>
   );
 };

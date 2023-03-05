@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {FC, useState, useEffect} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
+import PokeballIcon from '../../../img/components/PokeballIcon/PokeballIcon';
 import { pokemonStore } from '../../../store/PokemonStore';
 import { IPokemon } from '../../../types/pokemon';
 import { FETCH_POKEMONS, typeColors } from '../../../utils/consts';
@@ -124,6 +125,7 @@ const PokemonPage: FC = () => {
     <div className='pokemon-page page'>
       <div className="page__container">
         <PokemonSearch/>
+        <h1 className="pokemon-page__title">Pokemon info</h1>
         <div className="pokemon-info">
           <div
             className="pokemon-info__image"
@@ -141,22 +143,10 @@ const PokemonPage: FC = () => {
                   </div>
                 ))}
               </div>
-              <svg
+              <PokeballIcon
                 onClick={onToggleTeammate}
-                className={`pokemon-info__teammate-btn ${isTeammate ? 'pokemon-info__teammate-btn_active' : ''}`}
-                viewBox="0 0 36 36"
-              >
-                <defs>
-                  <mask id="mask" x="0" y="0" height="36" width="36">
-                    <rect x="0" y="0" height="18" width="36" fill="white" />
-                  </mask>
-                </defs>
-                <circle fill="white" stroke="black" strokeWidth="2" cx="18" cy="18" r="16" />
-                <circle fill="red" mask="url(#mask)" stroke="black" strokeWidth="2" cx="18" cy="18" r="16" />
-                <rect fill="black" height="2" width="32" x="2" y="17" />
-                <circle fill="white" stroke="black" strokeWidth="2" cx="18" cy="18" r="6" />
-                <circle fill="black" cx="18" cy="18" r="3" />
-              </svg>
+                classes={`pokemon-info__pokeball-icon ${isTeammate ? 'pokemon-info__pokeball-icon_active' : ''}`}
+              />
             </div>
             <img src={pokemonPicture} alt="Pokemon" />
             <h2 className='pokemon-info__name'>{pokemon?.name}</h2>
@@ -177,6 +167,10 @@ const PokemonPage: FC = () => {
           </div>
         </div>
         <div className="pokemon-evolution">
+          <h2 className="pokemon-evolution__title">Next evolutions</h2>
+          {!evolutions?.length &&
+            <p className='pokemon-evolution__text'>Pokemon has no evolutions.</p>
+          }
           <div className="pokemon-evolution__box">
             {evolutions?.map(evolution => (
               <div
