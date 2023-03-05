@@ -6,14 +6,26 @@ class PokemonStore {
     makeAutoObservable(this);
   }
 
-  _pokemons: IPokemon[] = []
+  _pokemons: IPokemon[] = [];
+  _teamIds: number[] = [];
 
   addPokemons(pokemons: IPokemon[]) {
     this._pokemons = pokemons;
   }
+
+  setPokemonsTeam(ids: number[]) {
+    this._teamIds = ids;
+  }
+
+  updateTeam(teamArr: number[]) {
+    this._teamIds = teamArr;
+  }
   
   get pokemons(): IPokemon[] {
     return this._pokemons;
+  }
+  get teamIds(): number[] {
+    return this._teamIds;
   }
 }
 

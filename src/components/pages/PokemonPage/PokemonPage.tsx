@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {FC, useState, useEffect} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
+import { pokemonStore } from '../../../store/PokemonStore';
 import { IPokemon } from '../../../types/pokemon';
 import { FETCH_POKEMONS, typeColors } from '../../../utils/consts';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
@@ -32,6 +33,7 @@ export interface IEvolutionChainData {
 
 const PokemonPage: FC = () => {
   const [pokemon, setPokemon] = useState<IPokemon | null>(null);
+  const [isTeammate, setIsTeammate] = useState(false);
   const [evolutions, setEvolutions] = useState<IPokemon[] | null>(null);
   const [loading, setLoading] = useState(false);
   const pokemonPicture = pokemon?.sprites.other['official-artwork'].front_default;
@@ -47,12 +49,13 @@ const PokemonPage: FC = () => {
       setLoading(true);
       const {data: pokemon} = await axios.get<IPokemon>(`${FETCH_POKEMONS}/${id}`);
       setPokemon(pokemon);
+      checkTeammate(pokemon.id);
       const {data: species} = await axios.get<ISpecies>(pokemon.species.url);
       const {data: evolutionChain} = await axios.get<IEvolutionChainData>(species.evolution_chain.url);
       const evolutions = await getEvolutions(evolutionChain, pokemon.name);
       setEvolutions(evolutions);
     } catch(err: any) {
-      if (err.response.status === 404) {
+      if (err.response?.status === 404) {
         navigate('/404');
         return
       }
@@ -86,6 +89,27 @@ const PokemonPage: FC = () => {
     }
   }
 
+  const checkTeammate = (id: number) => {
+    pokemonStore.teamIds.includes(id) ? setIsTeammate(true) : setIsTeammate(false);
+  }
+
+  const onToggleTeammate = () => {
+    const team = localStorage.getItem('team');
+    if (pokemon && team) {
+      let teamArr: number[] = JSON.parse(team);
+      if (isTeammate) {
+        teamArr = teamArr.filter((item: number) => item !== pokemon.id);
+        localStorage.setItem('team', JSON.stringify(teamArr));
+        setIsTeammate(false)
+      } else if (teamArr.length < 6) {
+        teamArr.push(pokemon.id);
+        localStorage.setItem('team', JSON.stringify(teamArr));
+        setIsTeammate(true)
+      }
+      pokemonStore.updateTeam(teamArr)
+    }
+  }
+
   if (loading) {
     return (
       <div className='pokemon-page page'>
@@ -105,18 +129,36 @@ const PokemonPage: FC = () => {
             className="pokemon-info__image"
             style={{backgroundColor: typeColor}}
           >
-            <div className="pokemon-info__types">
-              {pokemon?.types.map(item => (
-                <div
-                  key={item.slot}
-                  className="pokemon-info__type"
-                  style={{backgroundColor: typeColors?.[item.type.name] || '#F6F7F9'}}
-                >
-                  {item.type.name}
-                </div>
-              ))}
+            <div className="pokemon-info__icons">
+              <div className="pokemon-info__types">
+                {pokemon?.types.map(item => (
+                  <div
+                    key={item.slot}
+                    className="pokemon-info__type"
+                    style={{backgroundColor: typeColors?.[item.type.name] || '#F6F7F9'}}
+                  >
+                    {item.type.name}
+                  </div>
+                ))}
+              </div>
+              <svg
+                onClick={onToggleTeammate}
+                className={`pokemon-info__teammate-btn ${isTeammate ? 'pokemon-info__teammate-btn_active' : ''}`}
+                viewBox="0 0 36 36"
+              >
+                <defs>
+                  <mask id="mask" x="0" y="0" height="36" width="36">
+                    <rect x="0" y="0" height="18" width="36" fill="white" />
+                  </mask>
+                </defs>
+                <circle fill="white" stroke="black" strokeWidth="2" cx="18" cy="18" r="16" />
+                <circle fill="red" mask="url(#mask)" stroke="black" strokeWidth="2" cx="18" cy="18" r="16" />
+                <rect fill="black" height="2" width="32" x="2" y="17" />
+                <circle fill="white" stroke="black" strokeWidth="2" cx="18" cy="18" r="6" />
+                <circle fill="black" cx="18" cy="18" r="3" />
+              </svg>
             </div>
-            <img src={pokemonPicture} alt="" />
+            <img src={pokemonPicture} alt="Pokemon" />
             <h2 className='pokemon-info__name'>{pokemon?.name}</h2>
           </div>
           <div className="pokemon-info__content">
