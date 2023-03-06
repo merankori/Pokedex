@@ -11,7 +11,7 @@ const PokeballIcon: FC<PokeballIconProps> = ({classes, onClick}) => {
       className={classes}
       onClick={onClick}
     >
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Слой_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Слой_1" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 48 48" enableBackground="new 0 0 48 48">
         <g>
           <circle fill="#FF3D00" cx="24" cy="24" r="18"/>
         </g>

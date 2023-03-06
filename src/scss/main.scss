@@ -24,5 +24,6 @@ body {
 }
 
 .page {
+  margin-top: var(--header-height);
   min-height: calc(100vh - var(--header-height));
 }

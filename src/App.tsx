@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Header from './components/Header/Header';
 import CatalogPage from './components/pages/CatalogPage/CatalogPage';
 import ErrorPage from './components/pages/ErrorPage/ErrorPage';
+import HomePage from './components/pages/HomePage/HomePage';
 import PokemonPage from './components/pages/PokemonPage/PokemonPage';
 import TeamPage from './components/pages/TeamPage/TeamPage';
 import { pokemonStore } from './store/PokemonStore';
@@ -21,6 +22,7 @@ const App: FC = () => {
       <BrowserRouter>
         <Header/>
         <Routes>
+          <Route path='/' element={<HomePage/>}/>
           <Route path='/catalog' element={<CatalogPage/>}/>
           <Route path='/pokemon/:id' element={<PokemonPage/>}/>
           <Route path='/team' element={<TeamPage/>}/>
