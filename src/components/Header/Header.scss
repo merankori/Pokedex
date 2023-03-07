@@ -19,10 +19,38 @@
   &__nav {
     display: flex;
     gap: 20px;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
   &__link {
     color: #fff;
     font-size: 20px;
     font-weight: 700;
+  }
+  &__burger-btn {
+    display: none;
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    @media (max-width: 768px) {
+      display: block;
+    }
+    span {
+      position: absolute;
+      top: 45%;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--dark-accent-color);
+      &:first-child {
+        top: 0;
+      }
+      &:last-child {
+        top: auto;
+        bottom: 0;
+      }
+    }
   }
 }

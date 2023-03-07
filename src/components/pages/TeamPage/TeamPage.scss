@@ -5,7 +5,7 @@
   }
   &__text {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: clamp(1rem, 0.909rem + 0.45vw, 1.25rem);
     font-weight: 700;
     text-align: center;
     span {

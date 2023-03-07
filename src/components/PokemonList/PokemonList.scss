@@ -2,7 +2,7 @@
   width: 100%;
   &__text {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: clamp(1rem, 0.909rem + 0.45vw, 1.25rem);
     font-weight: 700;
     text-align: center;
     span {
@@ -26,13 +26,25 @@
   &__btn {
     cursor: pointer;
     padding: 15px 30px;
-    color: #fff;
     background-color: var(--accent-color);
     border-radius: 10px;
     outline: none;
     border: none;
+    svg {
+      height: 20px;
+      width: 20px;
+      fill: white;
+    }
     &:disabled {
       background-color: var(--dark-accent-color);
+    }
+  }
+  &__btn-left {
+
+  }
+  &__btn-right {
+    svg {
+      transform: rotate(180deg);
     }
   }
 }

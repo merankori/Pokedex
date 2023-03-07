@@ -49,7 +49,10 @@ const TeamPage: FC = () => {
     return (
       <div className='team-page page'>
         <div className="team-page__container">
-          <p>There are no Pokemon in your team.</p>
+          <h1 className="team-page__title">Your team</h1>
+          <p className="team-page__text">
+            There are no Pokemon in your team.
+          </p>
         </div>
       </div>
     )

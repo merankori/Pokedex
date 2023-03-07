@@ -4,10 +4,13 @@ import PokemonCard from '../PokemonCard/PokemonCard';
 import { IPokedata, IPokemon } from '../../types/pokemon';
 import { pokemonStore } from '../../store/PokemonStore';
 import { observer } from 'mobx-react-lite';
-
-import './PokemonList.scss';
 import { FETCH_POKEMONS } from '../../utils/consts';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
+//@ts-ignore
+import arrowImg from "../../img/icons/arrow.svg";
+
+import './PokemonList.scss';
+import ArrowIcon from '../../img/components/ArrowIcon/ArrowIcon';
 
 interface FetchPokemonsResult {
   count: number
@@ -88,16 +91,16 @@ const PokemonList: FC = observer(() => {
         <button
           onClick={() => changePage('prev')}
           disabled={prevUrl === null}
-          className='pokemon-list__btn'
+          className='pokemon-list__btn pokemon-list__btn-left'
         >
-          Prev
+          <ArrowIcon/>
         </button>
         <button
           onClick={() => changePage('next')}
           disabled={nextUrl === null}
-          className='pokemon-list__btn'
+          className='pokemon-list__btn pokemon-list__btn-right'
         >
-          Next
+          <ArrowIcon/>
         </button>
       </div>
     </div>
