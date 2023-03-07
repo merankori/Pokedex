@@ -1,5 +1,4 @@
 .pokemon-card {
-  --gap: 10px;
   cursor: pointer;
   transition: transform .5s;
   overflow: hidden;
@@ -8,15 +7,20 @@
   box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
   display: flex;
   height: 250px;
-  width: calc(33.33% - (var(--gap) * 2) / 3);
+  width: calc(33.33% - (var(--card-gap) * 2) / 3);
   @media (max-width: 1200px) {
-    width: calc(50% - var(--gap) / 2);
+    width: calc(50% - var(--card-gap) / 2);
   }
   @media (max-width: 768px) {
     width: 100%;
   }
+  @media (max-width: 480px) {
+    flex-direction: column-reverse;
+    height: auto;
+    position: relative;
+  }
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
   .pokemon-card__id {
     position: absolute;
@@ -42,15 +46,23 @@
   .pokemon-card__content {
     padding: 15px;
     width: 45%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 480px) {
+      width: 100%;
+      align-items: center;
+      gap: 20px;
+    }
   }
   .pokemon-card__img {
     position: relative;
     width: 55%;
     height: 100%;
+    @media (max-width: 480px) {
+      width: 100%;
+      height: 200px;
+    }
   }
   .pokemon-card__img-content {
     display: block;
@@ -86,6 +98,12 @@
   .pokemon-card__types {
     display: flex;
     gap: 10px;
+    @media (max-width: 480px) {
+      position: absolute;
+      z-index: 10;
+      top: 5%;
+      left: 5%;
+    }
   }
   .pokemon-card__type {
     text-transform: capitalize;

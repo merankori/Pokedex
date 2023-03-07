@@ -4,8 +4,9 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import PokeballIcon from '../../../img/components/PokeballIcon/PokeballIcon';
 import { pokemonStore } from '../../../store/PokemonStore';
 import { IPokemon } from '../../../types/pokemon';
-import { FETCH_POKEMONS, typeColors } from '../../../utils/consts';
+import { FETCH_POKEMONS, statColors, typeColors } from '../../../utils/consts';
 import LoadingScreen from '../../LoadingScreen/LoadingScreen';
+import PokemonCard from '../../PokemonCard/PokemonCard';
 import PokemonSearch from "../../PokemonSearch/PokemonSearch";
 
 import "./PokemonPage.scss";
@@ -148,6 +149,7 @@ const PokemonPage: FC = () => {
                 classes={`pokemon-info__pokeball-icon ${isTeammate ? 'pokemon-info__pokeball-icon_active' : ''}`}
               />
             </div>
+            <div className="pokemon-info__pokemon-id">#{pokemon?.id}</div>
             <img src={pokemonPicture} alt="Pokemon" />
             <h2 className='pokemon-info__name'>{pokemon?.name}</h2>
           </div>
@@ -159,8 +161,19 @@ const PokemonPage: FC = () => {
                   key={stat.stat.name}
                   className="pokemon-info__item"
                 >
-                  <p className='pokemon-info__item-value'>{stat.base_stat}</p>
-                  <p className='pokemon-info__item-name'>{stat.stat.name}</p>
+                  <div className="pokemon-info__item-stat">
+                    <p className='pokemon-info__item-value'>
+                      {stat.base_stat}
+                      <div
+                        style={{border: `3px solid ${statColors[stat.stat.name] || statColors.default}`}}
+                        className="pokemon-info__value-circle"></div>
+                    </p>
+                    <p className='pokemon-info__item-name'>{stat.stat.name}</p>
+                  </div>
+                  <div
+                    style={{backgroundColor: statColors[stat.stat.name] || statColors.default}}
+                    className="pokemon-info__item-scale"
+                  ></div>
                 </div>
               ))}
             </div>
@@ -173,21 +186,9 @@ const PokemonPage: FC = () => {
           }
           <div className="pokemon-evolution__box">
             {evolutions?.map(evolution => (
-              <div
+              <PokemonCard
                 key={evolution.id}
-                className="pokemon-evolution__item"
-              >
-                <Link
-                  to={`/pokemon/${evolution.id}`}
-                  style={{backgroundColor: typeColors?.[evolution?.types[0].type.name]}}
-                  className="pokemon-evolution__content"
-                >
-                  <img src={evolution.sprites.other['official-artwork'].front_default} alt="" className="pokemon-evolution__img" />
-                  <div className="pokemon-evolution__desc">
-                    <div className="pokemon-evolution__name">{evolution.name}</div>
-                  </div>
-                </Link>
-              </div>
+                pokemon={evolution}/>
             ))}
           </div>
         </div>

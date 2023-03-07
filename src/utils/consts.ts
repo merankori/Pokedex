@@ -38,3 +38,15 @@ export const typeColors: {
   shadow: "#333",
   dark: "#666"
 }
+
+export const statColors: {
+  [name: string]: string
+} = {
+  hp: "#14CC60",
+  attack: "#EF3E33",
+  defense: "#004E98",
+  "special-attack": "#C589E8",
+  "special-defense": "#2589BD",
+  speed: "#E4C811",
+  default: "#999"
+}
