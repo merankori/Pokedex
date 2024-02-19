@@ -1,6 +1,7 @@
 import path from 'path';
 import { Configuration } from 'webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
+import MiniCSSExtractPlugin from 'mini-css-extract-plugin';
 import 'webpack-dev-server';
 
 interface EnvVariables {
@@ -10,6 +11,7 @@ interface EnvVariables {
 
 export default ({ port, mode }: EnvVariables): Configuration => {
   const isDev = mode === 'development';
+  const isProd = mode === 'production';
 
   return {
     mode: mode ?? 'development',
@@ -25,7 +27,8 @@ export default ({ port, mode }: EnvVariables): Configuration => {
         template: path.resolve(__dirname, 'public', 'index.html'),
         favicon: path.resolve(__dirname, 'public', 'favicon.svg'),
       }),
-    ],
+      isProd && new MiniCSSExtractPlugin(),
+    ].filter(Boolean),
     module: {
       rules: [
         {
@@ -35,7 +38,11 @@ export default ({ port, mode }: EnvVariables): Configuration => {
         },
         {
           test: /\.s[ac]ss$/i,
-          use: ['style-loader', 'css-loader', 'sass-loader'],
+          use: [
+            isDev ? 'style-loader' : MiniCSSExtractPlugin.loader,
+            'css-loader',
+            'sass-loader',
+          ],
         },
         {
           test: /\.(png|jpg|jpeg|gif)$/i,
