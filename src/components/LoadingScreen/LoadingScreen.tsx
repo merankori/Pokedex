@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import Loader from '@/assets/loader.svg';
 import './LoadingScreen.scss';
 
-const LoadingScreen: FC = () => {
+export const LoadingScreen = () => {
   return (
     <div className="loading-screen">
       <Loader className="loading-screen__pokeball" />
@@ -10,5 +9,3 @@ const LoadingScreen: FC = () => {
     </div>
   );
 };
-
-export default LoadingScreen;

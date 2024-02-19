@@ -1,14 +1,14 @@
-import { FC, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { pokemonStore } from '@/store/PokemonStore';
 import { IPokemon } from '@/types/pokemon';
 import { FETCH_POKEMONS } from '@/constants/constants';
-import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
-import PokemonCard from '@/components/PokemonCard/PokemonCard';
-import Search from '@/components/PokemonSearch/PokemonSearch';
+import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
+import { PokemonCard } from '@/components/PokemonCard/PokemonCard';
+import { PokemonSearch } from '@/components/PokemonSearch/PokemonSearch';
 import './TeamPage.scss';
 
-const TeamPage: FC = () => {
+const TeamPage = () => {
   const [pokemons, setPokemons] = useState<IPokemon[] | null>(null);
   const [pokemonsCount, setPokemonsCount] = useState<number>(0);
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ const TeamPage: FC = () => {
   return (
     <div className="team-page page">
       <div className="team-page__container">
-        <Search />
+        <PokemonSearch />
         <h1 className="team-page__title">Your team</h1>
         <p className="team-page__text">
           There are <span>{pokemonsCount}</span> Pokemon in your team.

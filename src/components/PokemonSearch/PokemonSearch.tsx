@@ -1,4 +1,4 @@
-import { FC, useState, FormEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { IPokemon } from '@/types/pokemon';
@@ -7,7 +7,7 @@ import SearchIcon from '@/assets/icons/search.svg';
 import './PokemonSearch.scss';
 import clsx from 'clsx';
 
-const Search: FC = () => {
+export const PokemonSearch = () => {
   const [query, setQuery] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -48,5 +48,3 @@ const Search: FC = () => {
     </form>
   );
 };
-
-export default Search;

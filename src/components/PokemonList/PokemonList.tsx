@@ -1,11 +1,11 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import axios from 'axios';
-import PokemonCard from '@/components/PokemonCard/PokemonCard';
+import { PokemonCard } from '@/components/PokemonCard/PokemonCard';
 import { IPokedata, IPokemon } from '@/types/pokemon';
 import { pokemonStore } from '@/store/PokemonStore';
 import { FETCH_POKEMONS } from '@/constants/constants';
-import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
+import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
 import ArrowIcon from '@/assets/icons/arrow.svg';
 import './PokemonList.scss';
 import clsx from 'clsx';
@@ -17,7 +17,7 @@ interface FetchPokemonsResult {
   results: IPokedata[];
 }
 
-const PokemonList: FC = observer(() => {
+export const PokemonList = observer(() => {
   const limit = 9;
   const [page, setPage] = useState<number>(1);
   const offset = limit * page - limit;
@@ -104,5 +104,3 @@ const PokemonList: FC = observer(() => {
     </div>
   );
 });
-
-export default PokemonList;

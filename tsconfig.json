@@ -3,7 +3,7 @@
     "baseUrl": "src",
     "outDir": "./dist",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "ESNext",
     "target": "es5",
     "jsx": "react-jsx",
     "allowJs": true,

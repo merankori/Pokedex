@@ -1,9 +1,8 @@
-import { FC } from 'react';
-import PokemonList from '@/components/PokemonList/PokemonList';
-import PokemonSearch from '@/components/PokemonSearch/PokemonSearch';
+import { PokemonList } from '@/components/PokemonList/PokemonList';
+import { PokemonSearch } from '@/components/PokemonSearch/PokemonSearch';
 import './CatalogPage.scss';
 
-const CatalogPage: FC = () => {
+const CatalogPage = () => {
   return (
     <div className="catalog-page page">
       <div className="page__container">

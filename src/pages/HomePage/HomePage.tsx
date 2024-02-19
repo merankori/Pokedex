@@ -1,9 +1,8 @@
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import bgImage from '@/assets/bg.png';
 import './HomePage.scss';
 
-const HomePage: FC = () => {
+const HomePage = () => {
   return (
     <div className="home-page page">
       <div className="home-page__container">

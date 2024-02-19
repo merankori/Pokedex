@@ -9,7 +9,10 @@ interface BurgerMenuProps {
   onCloseMenu: () => void;
 }
 
-const BurgerMenu: FC<BurgerMenuProps> = ({ isMenuOpened, onCloseMenu }) => {
+export const BurgerMenu: FC<BurgerMenuProps> = ({
+  isMenuOpened,
+  onCloseMenu,
+}) => {
   return (
     <div
       onClick={onCloseMenu}
@@ -40,5 +43,3 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ isMenuOpened, onCloseMenu }) => {
     </div>
   );
 };
-
-export default BurgerMenu;

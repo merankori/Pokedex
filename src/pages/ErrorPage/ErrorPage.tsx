@@ -1,9 +1,8 @@
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import img from '@/assets/error-pic.png';
 import './ErrorPage.scss';
 
-const ErrorPage: FC = () => {
+const ErrorPage = () => {
   return (
     <div className="error-page page">
       <div className="error-page__container">

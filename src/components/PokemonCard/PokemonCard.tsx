@@ -11,7 +11,7 @@ interface PokemonCardProps {
   pokemon: IPokemon;
 }
 
-const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
+export const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
   const [isTeammate, setIsTeammate] = useState<boolean>(false);
 
   useEffect(() => {
@@ -82,5 +82,3 @@ const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
     </Link>
   );
 };
-
-export default PokemonCard;

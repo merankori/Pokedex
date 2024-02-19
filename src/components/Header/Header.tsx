@@ -1,11 +1,11 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '@/assets/logo.svg';
 import { headerLinks } from '@/constants/constants';
-import BurgerMenu from '@/components/BurgerMenu/BurgerMenu';
+import { BurgerMenu } from '@/components/BurgerMenu/BurgerMenu';
 import './Header.scss';
 
-const Header: FC = () => {
+export const Header = () => {
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
 
   const handleMenuOpen = () => {
@@ -39,5 +39,3 @@ const Header: FC = () => {
     </div>
   );
 };
-
-export default Header;

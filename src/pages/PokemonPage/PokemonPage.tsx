@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { FC, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PokeballIcon from '@/assets/icons/pokeball-icon.svg';
 import { pokemonStore } from '@/store/PokemonStore';
 import { IPokemon } from '@/types/pokemon';
 import { FETCH_POKEMONS, statColors, typeColors } from '@/constants/constants';
-import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
-import PokemonCard from '@/components/PokemonCard/PokemonCard';
-import PokemonSearch from '@/components/PokemonSearch/PokemonSearch';
+import { LoadingScreen } from '@/components/LoadingScreen/LoadingScreen';
+import { PokemonCard } from '@/components/PokemonCard/PokemonCard';
+import { PokemonSearch } from '@/components/PokemonSearch/PokemonSearch';
 import './PokemonPage.scss';
 import clsx from 'clsx';
 
@@ -33,7 +33,7 @@ export interface IEvolutionChainData {
   };
 }
 
-const PokemonPage: FC = () => {
+const PokemonPage = () => {
   const [pokemon, setPokemon] = useState<IPokemon | null>(null);
   const [isTeammate, setIsTeammate] = useState(false);
   const [evolutions, setEvolutions] = useState<IPokemon[] | null>(null);
