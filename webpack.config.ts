@@ -20,6 +20,7 @@ export default ({ port, mode }: EnvVariables): Configuration => {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[contenthash].js',
       clean: true,
+      assetModuleFilename: 'assets/[hash][ext]',
     },
     devtool: isDev && 'inline-source-map',
     plugins: [
@@ -27,7 +28,11 @@ export default ({ port, mode }: EnvVariables): Configuration => {
         template: path.resolve(__dirname, 'public', 'index.html'),
         favicon: path.resolve(__dirname, 'public', 'favicon.svg'),
       }),
-      isProd && new MiniCSSExtractPlugin(),
+      isProd &&
+        new MiniCSSExtractPlugin({
+          chunkFilename: 'css/[name].[contenthash].css',
+          filename: 'css/[name].[contenthash].css',
+        }),
     ].filter(Boolean),
     module: {
       rules: [
