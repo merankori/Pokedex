@@ -1,5 +1,5 @@
-import { makeAutoObservable } from "mobx";
-import { IPokemon } from "../types/pokemon";
+import { makeAutoObservable } from 'mobx';
+import { IPokemon } from '@/types/pokemon';
 
 class PokemonStore {
   constructor() {
@@ -20,7 +20,7 @@ class PokemonStore {
   updateTeam(teamArr: number[]) {
     this._teamIds = teamArr;
   }
-  
+
   get pokemons(): IPokemon[] {
     return this._pokemons;
   }

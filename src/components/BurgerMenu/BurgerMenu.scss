@@ -1,6 +1,6 @@
 .burger-menu {
   opacity: 0;
-  transition: opacity .5s;
+  transition: opacity 0.5s;
   pointer-events: none;
   z-index: 50;
   position: fixed;
@@ -9,21 +9,29 @@
   top: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
+
   &_active {
     opacity: 1;
     pointer-events: all;
+
     .burger-menu__content {
       transform: translateX(0);
     }
   }
+
   &__content {
-    transition: transform .5s;
+    transition: transform 0.5s;
     margin-left: auto;
     height: 100%;
     width: 75%;
     transform: translateX(130%);
-    background: linear-gradient(180deg, var(--accent-color) 0%, var(--dark-accent-color) 100%);
+    background: linear-gradient(
+      180deg,
+      var(--accent-color) 0%,
+      var(--dark-accent-color) 100%
+    );
   }
+
   &__header {
     height: var(--header-height);
     background-color: var(--accent-color);
@@ -31,17 +39,20 @@
     padding: 20px;
     display: flex;
     align-items: center;
+
     h2 {
       color: #fff;
       font-size: 30px;
       margin: 0 auto;
     }
   }
+
   &__nav {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
   }
+
   &__link {
     width: 100%;
     display: flex;
@@ -49,10 +60,11 @@
     padding: 30px 0;
     padding-left: 15%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  }
-  &__link-title {
-    color: #fff;
-    font-weight: 700;
-    font-size: 24px;
+
+    &-title {
+      color: #fff;
+      font-weight: 700;
+      font-size: 24px;
+    }
   }
 }

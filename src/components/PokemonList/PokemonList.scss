@@ -1,5 +1,6 @@
 .pokemon-list {
   width: 100%;
+
   &__text {
     margin-top: 10px;
     font-size: clamp(1rem, 0.909rem + 0.45vw, 1.25rem);
@@ -9,6 +10,7 @@
       color: var(--accent-color);
     }
   }
+
   &__box {
     margin-top: 20px;
     display: flex;
@@ -17,12 +19,14 @@
     width: 100%;
     gap: var(--card-gap);
   }
+
   &__buttons {
     margin-top: 20px;
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
+
   &__btn {
     cursor: pointer;
     padding: 15px 30px;
@@ -30,18 +34,18 @@
     border-radius: 10px;
     outline: none;
     border: none;
+
     svg {
       height: 20px;
       width: 20px;
       fill: white;
     }
+
     &:disabled {
       background-color: var(--dark-accent-color);
     }
   }
-  &__btn-left {
 
-  }
   &__btn-right {
     svg {
       transform: rotate(180deg);

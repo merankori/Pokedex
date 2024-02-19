@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
 @import url('./vars.scss');
 
-[class*="__container"] {
+[class*='__container'] {
   margin: 0 auto;
   padding: 0 15px;
   max-width: 1200px;
@@ -19,8 +19,8 @@ a {
 }
 
 body {
-  font-family: "Karla", serif;
-  background: linear-gradient(180deg, #FFFFFF 30.32%, #F5F5F5 100%);
+  font-family: 'Karla', serif;
+  background: linear-gradient(180deg, #ffffff 30.32%, #f5f5f5 100%);
 }
 
 .page {

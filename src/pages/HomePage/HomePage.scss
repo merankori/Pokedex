@@ -1,26 +1,36 @@
 .home-page {
   position: relative;
-  background: linear-gradient(180deg, var(--accent-color) 0%, var(--dark-accent-color) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--accent-color) 0%,
+    var(--dark-accent-color) 100%
+  );
+
   &__container {
     display: flex;
     justify-content: space-between;
   }
+
   &__content {
     margin-top: clamp(1.875rem, -0.352rem + 11.14vw, 8rem);
     display: flex;
     flex-direction: column;
     gap: clamp(2.5rem, 2.045rem + 2.27vw, 3.75rem);
   }
+
   &__title {
     font-weight: 400;
     font-size: clamp(2.375rem, 1.602rem + 3.86vw, 4.5rem);
+
     span {
       font-weight: 700;
     }
   }
+
   &__text {
     font-size: clamp(1.125rem, 0.807rem + 1.59vw, 2rem);
   }
+
   &__button {
     display: inline-block;
     align-self: flex-start;
@@ -28,15 +38,17 @@
     font-size: clamp(1.25rem, 1.159rem + 0.45vw, 1.5rem);
     font-weight: 700;
     color: #212121;
-    background: #FFA200;
+    background: #ffa200;
     box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
     border-radius: 11px;
   }
+
   &__bg {
     position: absolute;
     top: clamp(1.875rem, -0.352rem + 11.14vw, 8rem);
     right: 0;
     width: 40%;
+
     @media (max-width: 768px) {
       display: none;
     }
