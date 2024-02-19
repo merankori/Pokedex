@@ -1,4 +1,4 @@
-import { FC, Suspense, useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from '@/components/Header/Header';
 import { CatalogPage } from '@/pages/CatalogPage';
@@ -7,6 +7,7 @@ import { HomePage } from '@/pages/HomePage';
 import { PokemonPage } from '@/pages/PokemonPage';
 import { TeamPage } from '@/pages/TeamPage';
 import { pokemonStore } from '@/store/PokemonStore';
+import { LoadingScreen } from './components/LoadingScreen/LoadingScreen';
 
 export const App = () => {
   useEffect(() => {
@@ -18,6 +19,12 @@ export const App = () => {
     }
   }, []);
 
+  const PageLoader = (
+    <div className="page">
+      <LoadingScreen />
+    </div>
+  );
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -26,7 +33,7 @@ export const App = () => {
           <Route
             path="/"
             element={
-              <Suspense fallback="Loading...">
+              <Suspense fallback={PageLoader}>
                 <HomePage />
               </Suspense>
             }
@@ -34,7 +41,7 @@ export const App = () => {
           <Route
             path="/catalog"
             element={
-              <Suspense fallback="Loading...">
+              <Suspense fallback={PageLoader}>
                 <CatalogPage />
               </Suspense>
             }
@@ -42,7 +49,7 @@ export const App = () => {
           <Route
             path="/pokemon/:id"
             element={
-              <Suspense fallback="Loading...">
+              <Suspense fallback={PageLoader}>
                 <PokemonPage />
               </Suspense>
             }
@@ -50,7 +57,7 @@ export const App = () => {
           <Route
             path="/team"
             element={
-              <Suspense fallback="Loading...">
+              <Suspense fallback={PageLoader}>
                 <TeamPage />
               </Suspense>
             }
@@ -58,7 +65,7 @@ export const App = () => {
           <Route
             path="/404"
             element={
-              <Suspense fallback="Loading...">
+              <Suspense fallback={PageLoader}>
                 <ErrorPage />
               </Suspense>
             }

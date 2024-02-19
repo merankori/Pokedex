@@ -17,6 +17,7 @@ export default ({ port, mode }: EnvVariables): Configuration => {
     mode: mode ?? 'development',
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
+      publicPath: '/',
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].[contenthash].js',
       clean: true,

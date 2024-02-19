@@ -178,7 +178,7 @@ const PokemonPage = () => {
               {pokemon?.stats.map((stat) => (
                 <div key={stat.stat.name} className="pokemon-info__item">
                   <div className="pokemon-info__item-stat">
-                    <p className="pokemon-info__item-value">
+                    <div className="pokemon-info__item-value">
                       {stat.base_stat}
                       <div
                         style={{
@@ -188,8 +188,10 @@ const PokemonPage = () => {
                         }}
                         className="pokemon-info__value-circle"
                       ></div>
-                    </p>
-                    <p className="pokemon-info__item-name">{stat.stat.name}</p>
+                    </div>
+                    <div className="pokemon-info__item-name">
+                      {stat.stat.name}
+                    </div>
                   </div>
                   <div
                     style={{
