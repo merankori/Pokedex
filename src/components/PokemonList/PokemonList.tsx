@@ -8,6 +8,7 @@ import { FETCH_POKEMONS } from '@/constants/constants';
 import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
 import ArrowIcon from '@/assets/icons/arrow.svg';
 import './PokemonList.scss';
+import clsx from 'clsx';
 
 interface FetchPokemonsResult {
   count: number;
@@ -95,7 +96,7 @@ const PokemonList: FC = observer(() => {
         <button
           onClick={() => changePage('next')}
           disabled={nextUrl === null}
-          className="pokemon-list__btn pokemon-list__btn-right"
+          className={clsx('pokemon-list__btn', ['pokemon-list__btn-right'])}
         >
           <ArrowIcon />
         </button>

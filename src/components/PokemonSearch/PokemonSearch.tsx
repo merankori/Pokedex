@@ -5,13 +5,14 @@ import { IPokemon } from '@/types/pokemon';
 import { FETCH_POKEMONS } from '@/constants/constants';
 import SearchIcon from '@/assets/icons/search.svg';
 import './PokemonSearch.scss';
+import clsx from 'clsx';
 
 const Search: FC = () => {
   const [query, setQuery] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const openPokemonPage = async (e: FormEvent<HTMLFormElement>) => {
+  const handleOpenPokemonPage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!query.length) return;
     try {
@@ -20,13 +21,14 @@ const Search: FC = () => {
       );
       navigate(`/pokemon/${data.id}`);
     } catch (err) {
+      console.error(err);
       setErrorMessage(true);
       setTimeout(() => setErrorMessage(false), 3000);
     }
   };
 
   return (
-    <form onSubmit={(e) => openPokemonPage(e)} className="pokemon-search">
+    <form onSubmit={(e) => handleOpenPokemonPage(e)} className="pokemon-search">
       <input
         type="text"
         onChange={(e) => setQuery(e.target.value)}
@@ -35,9 +37,9 @@ const Search: FC = () => {
       />
       <button className="pokemon-search__button">
         <div
-          className={`pokemon-search__tooltip ${
-            errorMessage ? 'pokemon-search__tooltip_active' : ''
-          }`}
+          className={clsx('pokemon-search__tooltip', {
+            'pokemon-search__tooltip_active': errorMessage,
+          })}
         >
           Pokemon not found
         </div>

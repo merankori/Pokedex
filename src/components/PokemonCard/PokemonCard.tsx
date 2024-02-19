@@ -5,13 +5,14 @@ import { pokemonStore } from '@/store/PokemonStore';
 import { IPokemon } from '@/types/pokemon';
 import { typeColors } from '@/constants/constants';
 import './PokemonCard.scss';
+import clsx from 'clsx';
 
 interface PokemonCardProps {
   pokemon: IPokemon;
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
-  const [isTeammate, setIsTeammate] = useState<boolean>();
+  const [isTeammate, setIsTeammate] = useState<boolean>(false);
 
   useEffect(() => {
     checkTeammate(pokemon.id);
@@ -67,9 +68,9 @@ const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
         }}
       >
         <PokeballIcon
-          className={`pokemon-card__teammate-icon ${
-            isTeammate ? 'pokemon-card__teammate-icon_active' : ''
-          }`}
+          className={clsx('pokemon-card__teammate-icon', {
+            'pokemon-card__teammate-icon_active': isTeammate,
+          })}
         />
         <p className="pokemon-card__id">#{pokemon.id}</p>
         <img

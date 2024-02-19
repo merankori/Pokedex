@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { FC, useState, useEffect } from 'react';
+import axios from 'axios';
 import { pokemonStore } from '@/store/PokemonStore';
 import { IPokemon } from '@/types/pokemon';
 import { FETCH_POKEMONS } from '@/constants/constants';

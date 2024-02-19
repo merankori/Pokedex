@@ -8,8 +8,8 @@ import { FETCH_POKEMONS, statColors, typeColors } from '@/constants/constants';
 import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
 import PokemonCard from '@/components/PokemonCard/PokemonCard';
 import PokemonSearch from '@/components/PokemonSearch/PokemonSearch';
-
 import './PokemonPage.scss';
+import clsx from 'clsx';
 
 interface ISpecies {
   evolution_chain: {
@@ -163,13 +163,13 @@ const PokemonPage: FC = () => {
               </div>
               <PokeballIcon
                 onClick={onToggleTeammate}
-                className={`pokemon-info__pokeball-icon ${
-                  isTeammate ? 'pokemon-info__pokeball-icon_active' : ''
-                }`}
+                className={clsx('pokemon-info__pokeball-icon', {
+                  'pokemon-info__pokeball-icon_active': isTeammate,
+                })}
               />
             </div>
             <div className="pokemon-info__pokemon-id">#{pokemon?.id}</div>
-            <img src={pokemonPicture} alt="Pokemon" />
+            <img src={pokemonPicture} alt={pokemon?.name} />
             <h2 className="pokemon-info__name">{pokemon?.name}</h2>
           </div>
           <div className="pokemon-info__content">

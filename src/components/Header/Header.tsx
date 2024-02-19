@@ -6,11 +6,19 @@ import BurgerMenu from '@/components/BurgerMenu/BurgerMenu';
 import './Header.scss';
 
 const Header: FC = () => {
-  const [menuActive, setMenuActive] = useState<boolean>(false);
+  const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
+
+  const handleMenuOpen = () => {
+    setIsMenuOpened(true);
+  };
+
+  const handleMenuClose = () => {
+    setIsMenuOpened(false);
+  };
 
   return (
     <div className="header">
-      <BurgerMenu isActive={menuActive} setActive={setMenuActive} />
+      <BurgerMenu isMenuOpened={isMenuOpened} onCloseMenu={handleMenuClose} />
       <div className="header__container">
         <Link to="/">
           <Logo className="header__logo" />
@@ -22,7 +30,7 @@ const Header: FC = () => {
             </Link>
           ))}
         </nav>
-        <div onClick={() => setMenuActive(true)} className="header__burger-btn">
+        <div onClick={handleMenuOpen} className="header__burger-btn">
           <span></span>
           <span></span>
           <span></span>

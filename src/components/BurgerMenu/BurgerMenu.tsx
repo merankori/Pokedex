@@ -1,18 +1,21 @@
 import { Dispatch, FC } from 'react';
 import { Link } from 'react-router-dom';
 import { headerLinks } from '@/constants/constants';
+import clsx from 'clsx';
 import './BurgerMenu.scss';
 
 interface BurgerMenuProps {
-  isActive: boolean;
-  setActive: Dispatch<React.SetStateAction<boolean>>;
+  isMenuOpened: boolean;
+  onCloseMenu: () => void;
 }
 
-const BurgerMenu: FC<BurgerMenuProps> = ({ isActive, setActive }) => {
+const BurgerMenu: FC<BurgerMenuProps> = ({ isMenuOpened, onCloseMenu }) => {
   return (
     <div
-      onClick={() => setActive(false)}
-      className={isActive ? 'burger-menu burger-menu_active' : 'burger-menu'}
+      onClick={onCloseMenu}
+      className={clsx('burger-menu', {
+        'burger-menu_active': isMenuOpened,
+      })}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -24,7 +27,7 @@ const BurgerMenu: FC<BurgerMenuProps> = ({ isActive, setActive }) => {
         <nav className="burger-menu__nav">
           {headerLinks.map((link) => (
             <Link
-              onClick={() => setActive(false)}
+              onClick={onCloseMenu}
               key={link.path}
               to={link.path}
               className="burger-menu__link"
